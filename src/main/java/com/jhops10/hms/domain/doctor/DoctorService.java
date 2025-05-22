@@ -12,26 +12,26 @@ public class DoctorService {
 
     private final DoctorRepository doctorRepository;
 
-    private Doctor createDoctor(Doctor doctor) {
+    public Doctor createDoctor(Doctor doctor) {
         return doctorRepository.save(doctor);
     }
 
-    private List<Doctor> getAll() {
+    public List<Doctor> getAll() {
         return doctorRepository.findAll();
     }
 
-    private Doctor findDoctorById(Long id) {
+    public Doctor findDoctorById(Long id) {
         return doctorRepository.findById(id)
                 .orElseThrow(() -> new DoctorNotFouunudException("Médico com o id " + id + " não encontrado."));
     }
 
-    private Doctor updateDoctorById(Long id, DoctorUpdateDTO dto) {
+    public Doctor updateDoctorById(Long id, DoctorUpdateDTO dto) {
         Doctor existingDoctor = findDoctorById(id);
         DoctorUpdateDTO.updateDoctorFromDTO(dto, existingDoctor);
         return doctorRepository.save(existingDoctor);
     }
 
-    private void deleteDoctorById(Long id) {
+    public void deleteDoctorById(Long id) {
         if (!doctorRepository.existsById(id)) {
             throw new DoctorNotFouunudException("Médico com o id " + id + " não encontrado.");
         }
