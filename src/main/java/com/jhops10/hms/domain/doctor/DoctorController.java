@@ -32,7 +32,7 @@ public class DoctorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Doctor> updateById(@PathVariable("id") Long id, DoctorUpdateDTO dto) {
+    public ResponseEntity<Doctor> updateById(@PathVariable("id") Long id, @RequestBody DoctorUpdateDTO dto) {
         return ResponseEntity.ok().body(doctorService.updateDoctorById(id, dto));
     }
 
