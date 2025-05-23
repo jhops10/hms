@@ -1,6 +1,6 @@
 package com.jhops10.hms.domain.doctor;
 
-import com.jhops10.hms.common.exceptions.DoctorNotFouunudException;
+import com.jhops10.hms.common.exceptions.DoctorNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class DoctorService {
 
     public Doctor findDoctorById(Long id) {
         return doctorRepository.findById(id)
-                .orElseThrow(() -> new DoctorNotFouunudException("Médico com o id " + id + " não encontrado."));
+                .orElseThrow(() -> new DoctorNotFoundException("Médico com o id " + id + " não encontrado."));
     }
 
     public Doctor updateDoctorById(Long id, DoctorUpdateDTO dto) {
@@ -33,7 +33,7 @@ public class DoctorService {
 
     public void deleteDoctorById(Long id) {
         if (!doctorRepository.existsById(id)) {
-            throw new DoctorNotFouunudException("Médico com o id " + id + " não encontrado.");
+            throw new DoctorNotFoundException("Médico com o id " + id + " não encontrado.");
         }
 
         doctorRepository.deleteById(id);
